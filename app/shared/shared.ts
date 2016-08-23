@@ -11,6 +11,10 @@ const SHARED_PIPES: any[] = [
     FormattedTimePipe,
     QueuedOnlyPipe
 ];
+const SHARED_PROVIDERS: any[] = [
+    SettingsService,
+    TaskService
+];
 
 export {
     Queueable,
@@ -18,7 +22,9 @@ export {
 
     FormattedTimePipe,
     QueuedOnlyPipe,
+    SHARED_PIPES,
 
     SettingsService,
-    TaskService
+    TaskService,
+    SHARED_PROVIDERS
 };
