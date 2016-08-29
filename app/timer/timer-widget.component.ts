@@ -20,10 +20,10 @@ export default class TimerWidgetComponent {
     seconds: number;
     isPaused: boolean;
     buttonLabelKey: string;
-    buttonLabelMap: any;
+    buttonLabelsMap: any;
     
     constructor(private settingsService: SettingsService) { 
-        this.buttonLabelMap = settingsService.labelsMap.timer;
+        this.buttonLabelsMap = settingsService.labelsMap.timer;
     }
 
 
