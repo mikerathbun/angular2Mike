@@ -25,8 +25,8 @@ export default class TaskService {
           return {
             name: res.name,
             deadline: new Date(res.deadline),
-            pomodoroRequired: res.pomodorosRequired,
-            queues: res.queued
+            pomodorosRequired: res.pomodorosRequired,
+            queued: res.queued
 
           }
         }))
