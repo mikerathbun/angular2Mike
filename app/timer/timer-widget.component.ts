@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SettingsService, TaskService } from '../shared/shared';
-import { RouteParams } from '@angular/router-deprecated';
+import { RouteParams, CanReuse, OnReuse } from '@angular/router-deprecated';
 
 
 
@@ -18,7 +18,7 @@ import { RouteParams } from '@angular/router-deprecated';
       </p>
     </div>`
 })
-export default class TimerWidgetComponent implements OnInit {
+export default class TimerWidgetComponent implements OnInit, CanReuse, OnReuse {
     minutes: number;
     seconds: number;
     isPaused: boolean;
@@ -43,6 +43,18 @@ export default class TimerWidgetComponent implements OnInit {
             this.taskName = this.taskService.taskStore[taskIndex].name;
         }
     }
+
+    routerCanReuse(): boolean {
+        return true;
+    }
+
+    routerOnReuse(): void {
+        this.taskName = null;
+        this.isPaused = false;
+        this.resetPomodoro();
+    }
+
+
     resetPomodoro(): void {
         this.isPaused = true;
         this.minutes = this.settingsService.timerMinutes - 1;

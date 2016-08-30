@@ -23,12 +23,17 @@ import { Title } from '@angular/platform-browser';
     }
 )
 
-export default class TaskEditorComponent implements OnActivate {
+export default class TaskEditorComponent implements OnActivate, CanDeactivate, OnDeactivate {
     constructor(private title: Title) { }
-    routerOnActivate(
-        next: ComponentInstruction,
-        prev: ComponentInstruction
-    ): void {
+    routerOnActivate(): void {
         this.title.setTitle('Welcome to the Task Form');
+    }
+
+    routerCanDeactivate(): Promise<boolean> | boolean {
+        return confirm('Are you sure you want to leave?');
+    }
+
+    routerOnDeactivate(): void {
+        this.title.setTitle('My Angular 2 Pomodoro Timer');
     }
 }

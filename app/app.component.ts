@@ -24,8 +24,14 @@ import { TasksComponent, TaskEditorComponent } from './tasks/tasks'
 @RouteConfig([
     { 
         path: '',
+        name: 'Home',
+        redirectTo: ['TasksComponent']
+    },
+    {
+        path: 'tasks',
         name: 'TasksComponent',
-        component: TasksComponent
+        component: TasksComponent,
+        useAsDefault: true
     },
     {
         path: 'tasks/editor',
