@@ -55,7 +55,7 @@ export default class TasksComponent implements OnInit {
       return pomodoros + queuedTask.pomodorosRequired;
     }, 0);
   }
-  workOn(): void {
-    this.router.navigate(['TimerComponent']);
+  workOn(index: number): void {
+    this.router.navigate(['TimerComponent', { id: index }]);
   }
 };

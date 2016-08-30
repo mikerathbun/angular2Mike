@@ -13,6 +13,12 @@ import { TasksComponent, TaskEditorComponent } from './tasks/tasks'
     selector: 'pomodoro-app',
     directives: [ROUTER_DIRECTIVES],
     providers: [SHARED_PROVIDERS, HTTP_PROVIDERS, ROUTER_PROVIDERS],
+    styles: [`
+        .router-link-active {
+            font-weight: bold;
+            border-bottom: 2px #d9534f solid;
+        }
+        `],
     templateUrl: 'app/app.component.html'
 })
 @RouteConfig([
