@@ -36,7 +36,7 @@ export default class TimerWidgetComponent implements OnInit {
     ngOnInit(): void { 
         this.resetPomodoro();
         setInterval(() => this.tick(), 1000);
-
+        console.log("id is: " + this.routeParams.get('id'));
         let taskIndex = parseInt(this.routeParams.get('id'));
         //this.taskName = this.taskService.taskStore[0].name;
         if (!isNaN(taskIndex)) {

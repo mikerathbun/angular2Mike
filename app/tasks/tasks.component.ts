@@ -56,6 +56,6 @@ export default class TasksComponent implements OnInit {
     }, 0);
   }
   workOn(index: number): void {
-    this.router.navigate(['TimerComponent', { id: index }]);
+    this.router.navigate(['TimerComponent', 'TaskTimer', { id: index }]);
   }
 };
