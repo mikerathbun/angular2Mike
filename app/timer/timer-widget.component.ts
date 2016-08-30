@@ -1,4 +1,4 @@
-import { Component, Input, Output, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SettingsService, TaskService } from '../shared/shared';
 import { RouteParams } from '@angular/router-deprecated';
 
@@ -18,7 +18,7 @@ import { RouteParams } from '@angular/router-deprecated';
       </p>
     </div>`
 })
-export default class TimerWidgetComponent {
+export default class TimerWidgetComponent implements OnInit {
     minutes: number;
     seconds: number;
     isPaused: boolean;
@@ -38,6 +38,7 @@ export default class TimerWidgetComponent {
         setInterval(() => this.tick(), 1000);
 
         let taskIndex = parseInt(this.routeParams.get('id'));
+        //this.taskName = this.taskService.taskStore[0].name;
         if (!isNaN(taskIndex)) {
             this.taskName = this.taskService.taskStore[taskIndex].name;
         }
