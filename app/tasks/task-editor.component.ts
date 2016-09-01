@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {
+    Router,
     ROUTER_DIRECTIVES,
     CanActivate,
     ComponentInstruction,
@@ -7,6 +8,9 @@ import {
     CanDeactivate,
     OnDeactivate } from '@angular/router-deprecated';
 import { Title } from '@angular/platform-browser';
+import { 
+    Task, 
+    TaskService} from '../shared/shared';
 
 
 @Component({
@@ -15,25 +19,37 @@ import { Title } from '@angular/platform-browser';
     providers: [Title],
     templateUrl: 'app/tasks/task-editor.component.html'
 })
-@CanActivate((
-    next: ComponentInstruction,
-    prev: ComponentInstruction): boolean => {
-        let passPhrase = prompt('Say the phrase');
-        return (passPhrase == 'open sesame');
-    }
-)
+
 
 export default class TaskEditorComponent implements OnActivate, CanDeactivate, OnDeactivate {
-    constructor(private title: Title) { }
+
+    task: Task;
+    changesSaved: boolean;
+
+    constructor(
+        private title: Title,
+        private router: Router,
+        private taskService: TaskService) {
+        
+        this.task = <Task>{};
+
+    }
     routerOnActivate(): void {
         this.title.setTitle('Welcome to the Task Form');
     }
 
     routerCanDeactivate(): Promise<boolean> | boolean {
-        return confirm('Are you sure you want to leave?');
+        return this.changesSaved ||  confirm('Are you sure you want to leave?');
     }
 
     routerOnDeactivate(): void {
         this.title.setTitle('My Angular 2 Pomodoro Timer');
+    }
+
+    saveTask() {
+        this.task.deadline = new Date(this.task.deadline.toString());
+        this.taskService.addTask(this.task);
+        this.changesSaved = true;
+        this.router.navigate(['TasksComponent']);
     }
 }
