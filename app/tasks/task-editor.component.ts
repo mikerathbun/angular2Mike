@@ -17,7 +17,12 @@ import {
     selector: 'pomodoro-tasks-editor',
     directives: [ROUTER_DIRECTIVES],
     providers: [Title],
-    templateUrl: 'app/tasks/task-editor.component.html'
+    templateUrl: 'app/tasks/task-editor.component.html',
+    styles: [`
+        .ng-valid { border-color: #3c763d; }
+        .ng-invalid { border-color: #a94442; }
+        .ng-untouched { border-color: #999999;}
+    `]
 })
 
 
