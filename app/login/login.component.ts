@@ -20,5 +20,5 @@ export default class LoginComponent {
         private router: Router) {}
 
     authenticate() {}
-    
+
 }

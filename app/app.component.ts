@@ -8,6 +8,8 @@ import { ROUTER_PROVIDERS,
          ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 import { TimerComponent} from './timer/timer';
 import { TasksComponent, TaskEditorComponent } from './tasks/tasks'
+import { FORM_PROVIDERS } from '@angular/common';
+import { LoginComponent } from './login/login';
 
 @Component({
     selector: 'pomodoro-app',
@@ -42,6 +44,12 @@ import { TasksComponent, TaskEditorComponent } from './tasks/tasks'
         path: 'timer/...',
         name: 'TimerComponent',
         component: TimerComponent
+    },
+    {
+        path: 'login',
+        name: 'LoginComponent',
+        component: LoginComponent
     }
+
 ])
 export default class AppComponent{}
