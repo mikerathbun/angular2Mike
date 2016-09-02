@@ -14,14 +14,26 @@ import { Router } from '@angular/router-deprecated';
 export default class LoginComponent {
     loginForm: ControlGroup;
     notValidCredentials: boolean = false;
+    showUsernameHint: boolean = false;
 
     constructor(
         formBuilder: FormBuilder,
         private router: Router) {
         
         this.loginForm = formBuilder.group({
-            username: ['', Validators.required],
+            username: ['', 
+                Validators.compose([
+                    Validators.required,
+                    this.emailValidator
+                ])
+            ],
             password: ['', Validators.required]
+        });
+
+        const username = this.loginForm.controls['username'];
+        username.valueChanges.subscribe(value => {
+            this.showUsernameHint = (username.dirty &&
+                value.indexOf('@') < 0);
         });
 
 

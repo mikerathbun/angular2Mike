@@ -11,6 +11,9 @@
       class="form-control"
       placeholder="Your username"
       ngControl="username">
+      <p *ngIf="showUsernameHint" class="help-block">
+          That is not the correct username
+      </p>
   </div>
 
   <div class="form-group">
