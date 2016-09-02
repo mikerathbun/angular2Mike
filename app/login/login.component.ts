@@ -17,8 +17,32 @@ export default class LoginComponent {
 
     constructor(
         formBuilder: FormBuilder,
-        private router: Router) {}
+        private router: Router) {
+        
+        this.loginForm = formBuilder.group({
+            username: ['', Validators.required],
+            password: ['', Validators.required]
+        });
 
-    authenticate() {}
 
+    }
+
+    authenticate() {
+        let credentials: any = this.loginForm.value;
+        this.notValidCredentials = !this.loginForm.valid && this.loginForm.dirty;
+
+        if (credentials.username === 'john.doe@mail.com' && credentials.password === 'letmein') {
+            this.router.navigateByUrl('/');
+        } else {
+            this.notValidCredentials = true;
+        }
+    }
+    private emailValidator(control: Control): { [key: string]: boolean } {
+        if (!/(.+)@(.+){2,}\.(.+){2,}/.test(control.value)) {
+            return {
+                'emailNotValid': true
+            };
+        }
+        return null;
+    }
 }
