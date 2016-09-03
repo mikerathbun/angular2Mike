@@ -10,7 +10,8 @@ import {
 import { Title } from '@angular/platform-browser';
 import { 
     Task, 
-    TaskService} from '../shared/shared';
+    TaskService,
+    AuthenticationService} from '../shared/shared';
 
 
 @Component({
@@ -25,9 +26,8 @@ import {
     `]
 })
 
-
+@CanActivate(AuthenticationService.isAuthorized)
 export default class TaskEditorComponent implements OnActivate, CanDeactivate, OnDeactivate {
-
     task: Task;
     changesSaved: boolean;
 
@@ -35,7 +35,6 @@ export default class TaskEditorComponent implements OnActivate, CanDeactivate, O
         private title: Title,
         private router: Router,
         private taskService: TaskService) {
-        
         this.task = <Task>{};
 
     }

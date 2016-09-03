@@ -6,6 +6,7 @@ import {
     Control
 } from '@angular/common';
 import { Router } from '@angular/router-deprecated';
+import { AuthenticationService } from '../shared/shared';
 
 @Component({
     selector: 'pomodoro-login',
@@ -18,7 +19,8 @@ export default class LoginComponent {
 
     constructor(
         formBuilder: FormBuilder,
-        private router: Router) {
+        private router: Router,
+        private authenticationService: AuthenticationService) {
         
         this.loginForm = formBuilder.group({
             username: ['', 
