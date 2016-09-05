@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { TIMER_DIRECTIVES } from './timer/timer';
 import { TASKS_DIRECTIVES } from './tasks/tasks';
-import { SHARED_PROVIDERS } from './shared/shared';
+import { SHARED_PROVIDERS, AuthenticationService } from './shared/shared';
 import { HTTP_PROVIDERS } from '@angular/http';
 import { ROUTER_PROVIDERS,
          RouteConfig,
-         ROUTER_DIRECTIVES } from '@angular/router-deprecated';
+         ROUTER_DIRECTIVES,
+         Router } from '@angular/router-deprecated';
 import { TimerComponent} from './timer/timer';
 import { TasksComponent, TaskEditorComponent } from './tasks/tasks'
 import { FORM_PROVIDERS } from '@angular/common';
@@ -52,4 +53,25 @@ import { LoginComponent } from './login/login';
     }
 
 ])
-export default class AppComponent{}
+
+export default class AppComponent{
+    userIsLoggedIn: boolean;
+
+    constructor(
+        private authenticationService: AuthenticationService,
+        private router: Router) {
+        authenticationService.userIsLoggedIn.subscribe(isLoggedIn => {
+            this.userIsLoggedIn = isLoggedIn;
+        });
+    }
+
+    logout($event): void {
+        $event.preventDefault();
+
+        this.authenticationService.logout().then(success => {
+            if (success) {
+                this.router.navigateByUrl('/');
+            }
+        });
+    }
+}

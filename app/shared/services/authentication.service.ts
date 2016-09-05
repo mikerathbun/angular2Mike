@@ -15,7 +15,7 @@ export default class AuthenticationService {
 
             // @Note: In a real scenario this check
             // should be performed against a web service.
-            if (username === 'jogn.doe@mail.com' && password === 'letmein') {
+            if (username === 'john.doe@mail.com' && password === 'letmein') {
                 validCredentials = true;
                 window.sessionStorage.setItem('token', 'eyJhbGci0i');
             }

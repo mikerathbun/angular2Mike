@@ -35,7 +35,7 @@ export default class LoginComponent {
         const username = this.loginForm.controls['username'];
         username.valueChanges.subscribe(value => {
             this.showUsernameHint = (username.dirty &&
-                value.indexOf('@') < 0);
+            value.indexOf('@') < 0);
         });
 
 
@@ -45,11 +45,13 @@ export default class LoginComponent {
         let credentials: any = this.loginForm.value;
         this.notValidCredentials = !this.loginForm.valid && this.loginForm.dirty;
 
-        if (credentials.username === 'john.doe@mail.com' && credentials.password === 'letmein') {
-            this.router.navigateByUrl('/');
-        } else {
-            this.notValidCredentials = true;
-        }
+        this.authenticationService.login(credentials).then(success => {
+            if (success) {
+                this.router.navigateByUrl('/');
+            } else {
+                this.notValidCredentials = true;
+            }
+        });
     }
     private emailValidator(control: Control): { [key: string]: boolean } {
         if (!/(.+)@(.+){2,}\.(.+){2,}/.test(control.value)) {
