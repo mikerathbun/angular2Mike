@@ -6,7 +6,7 @@
     <ul class="nav navbar-nav navbar-right">
       <li><a [routerLink]="['TasksComponent']">Tasks</a></li>
       <li><a [routerLink]="['TimerComponent']">Timer</a></li>
-      <li *ngIf="userIsLoggedIn">
+      <li>
           <a [routerLink]="['TaskEditorComponent']">Publish Task</a>
       </li>
       <li *ngIf="!userIsLoggedIn">
@@ -18,5 +18,9 @@
     </ul>
   </div>
 </nav>
+<pomodoro-router-outlet
+  protectedPath="tasks/editor"
+  loginUrl="login">
 
+</pomodoro-router-outlet>
 <router-outlet></router-outlet>

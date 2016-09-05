@@ -42,8 +42,13 @@ export default class TaskEditorComponent implements OnActivate, CanDeactivate, O
         this.title.setTitle('Welcome to the Task Form');
     }
 
-    routerCanDeactivate(): Promise<boolean> | boolean {
-        return this.changesSaved ||  confirm('Are you sure you want to leave?');
+    routerCanDeactivate(
+        next: ComponentInstruction,
+        prev: ComponentInstruction) {
+        // return this.changesSaved ||  confirm('Are you sure you want to leave?');
+        return !AuthenticationService.isAuthorized() ||
+            this.changesSaved ||
+            confirm('Are you sure you want to leave?');
     }
 
     routerOnDeactivate(): void {

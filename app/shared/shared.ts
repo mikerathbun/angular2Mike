@@ -8,6 +8,7 @@ import AuthenticationService from './services/authentication.service';
 import SettingsService from './services/settings.service';
 import TaskService from './services/task.service';
 
+import RouterOutletDirective  from './directives/router-outlet.directive';
 const SHARED_PIPES: any[] = [
     FormattedTimePipe,
     QueuedOnlyPipe
@@ -18,6 +19,9 @@ const SHARED_PROVIDERS: any[] = [
     TaskService
 ];
 
+const SHARED_DIRECTIVES: any[] = [
+    RouterOutletDirective
+];
 export {
     Queueable,
     Task,
@@ -29,5 +33,8 @@ export {
     AuthenticationService,
     SettingsService,
     TaskService,
-    SHARED_PROVIDERS
+    SHARED_PROVIDERS,
+
+    RouterOutletDirective,
+    SHARED_DIRECTIVES
 };

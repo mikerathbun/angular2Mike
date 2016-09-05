@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { TIMER_DIRECTIVES } from './timer/timer';
 import { TASKS_DIRECTIVES } from './tasks/tasks';
-import { SHARED_PROVIDERS, AuthenticationService } from './shared/shared';
+import { 
+    SHARED_PROVIDERS, 
+    AuthenticationService,
+    SHARED_DIRECTIVES } from './shared/shared';
 import { HTTP_PROVIDERS } from '@angular/http';
 import { ROUTER_PROVIDERS,
          RouteConfig,
@@ -14,7 +17,7 @@ import { LoginComponent } from './login/login';
 
 @Component({
     selector: 'pomodoro-app',
-    directives: [ROUTER_DIRECTIVES],
+    directives: [ROUTER_DIRECTIVES, SHARED_DIRECTIVES],
     providers: [SHARED_PROVIDERS, HTTP_PROVIDERS, ROUTER_PROVIDERS],
     styles: [`
         .router-link-active {

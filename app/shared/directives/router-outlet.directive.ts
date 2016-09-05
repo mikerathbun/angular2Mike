@@ -30,4 +30,13 @@ export default class RouterOutletDirective extends RouterOutlet {
         this.parentRouter = _parentRouter;
 
         }
+
+        activate(nextInstruction: ComponentInstruction): Promise<any> {
+            let requiresAuthentication = this.protectedPath === nextInstruction.urlPath;
+
+            if (requiresAuthentication && !AuthenticationService.isAuthorized()) {
+                this.parentRouter.navigateByUrl(this.loginUrl);
+            }
+            return super.activate(nextInstruction);
+        }
 }
