@@ -52,9 +52,10 @@ export default class TimerWidgetComponent implements OnInit, CanReuse, OnReuse {
         if (!isNaN(taskIndex)) {
             this.taskName = this.taskService.taskStore[taskIndex].name;
         }
-        this.fadeInAnimationBuilder.start(
+        const animation = this.fadeInAnimationBuilder.start(
             this.elementRef.nativeElement.firstElementChild
         );
+        animation.onComplete( () => console.log('Animation completed!'));
     }
 
     routerCanReuse(): boolean {

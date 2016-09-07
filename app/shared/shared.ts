@@ -9,6 +9,8 @@ import SettingsService from './services/settings.service';
 import TaskService from './services/task.service';
 
 import RouterOutletDirective  from './directives/router-outlet.directive';
+import HighlightDirective from './directives/highlight.directive';
+
 const SHARED_PIPES: any[] = [
     FormattedTimePipe,
     QueuedOnlyPipe
@@ -20,7 +22,8 @@ const SHARED_PROVIDERS: any[] = [
 ];
 
 const SHARED_DIRECTIVES: any[] = [
-    RouterOutletDirective
+    RouterOutletDirective,
+    HighlightDirective
 ];
 export {
     Queueable,
@@ -36,5 +39,6 @@ export {
     SHARED_PROVIDERS,
 
     RouterOutletDirective,
+    HighlightDirective,
     SHARED_DIRECTIVES
 };
