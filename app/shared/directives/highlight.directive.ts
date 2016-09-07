@@ -4,7 +4,8 @@ import { CssAnimationBuilder } from '@angular/platform-browser/src/animate/css_a
 
 @Directive({
     selector: '.pomodoro-highlight',
-    providers: [AnimationBuilder]
+    providers: [AnimationBuilder],
+    exportAs: 'pomodoroHighlight'
 })
 export default class HighlightDirective {
     cssAnimationBuilder: CssAnimationBuilder;
@@ -18,13 +19,15 @@ export default class HighlightDirective {
             .setToStyles({ backgroundColor: '#fff5a0' });
     }
 
-    ngOnInit() {
+    colorize() {
         let animation = this.cssAnimationBuilder.start(
             this.elementRef.nativeElement
         );
 
-        animation.onComplete( () => {
-            animation.applyStyles( { backgroundColor: 'inherit'});
-        })
+        animation.onComplete(() => {
+            animation.applyStyles({ backgroundColor: 'inherit'});
+        });
     }
+
+    
 }

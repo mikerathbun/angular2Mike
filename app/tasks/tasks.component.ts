@@ -7,12 +7,13 @@ import {
     TaskService,
     SettingsService,
     Task,
-    SHARED_PIPES
+    SHARED_PIPES,
+    SHARED_DIRECTIVES
 } from '../shared/shared';
 
 @Component({
     selector: 'pomodoro-tasks',
-    directives: [TaskIconsComponent, TaskTooltipDirective],
+    directives: [TaskIconsComponent, TaskTooltipDirective, SHARED_DIRECTIVES],
     pipes: [SHARED_PIPES],
     styleUrls: ['app/tasks/tasks.component.css'],
     templateUrl: 'app/tasks/tasks.component.html'
