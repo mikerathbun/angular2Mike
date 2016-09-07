@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { SettingsService, TaskService } from '../shared/shared';
 import { RouteParams, CanReuse, OnReuse } from '@angular/router-deprecated';
+import { AnimationBuilder } from '@angular/platform-browser/src/animate/animation_builder';
+import { CssAnimationBuilder } from '@angular/platform-browser/src/animate/css_animation_builder';
+
 
 
 
@@ -26,23 +29,32 @@ export default class TimerWidgetComponent implements OnInit, CanReuse, OnReuse {
     buttonLabelKey: string;
     buttonLabelsMap: any;
     taskName: string;
+    fadeInAnimationBuilder: CssAnimationBuilder;
     
     constructor(private settingsService: SettingsService,
                 private routeParams: RouteParams,
-                private taskService: TaskService) { 
+                private taskService: TaskService,
+                private animationBuilder: AnimationBuilder,
+                private elementRef: ElementRef) { 
         this.buttonLabelsMap = settingsService.labelsMap.timer;
+        this.fadeInAnimationBuilder = animationBuilder.css();
+        this.fadeInAnimationBuilder.setDuration(1000)
+            .setDelay(300)
+            .setFromStyles({ opacity: 0 })
+            .setToStyles( { opacity: 1});
     }
 
 
     ngOnInit(): void { 
         this.resetPomodoro();
         setInterval(() => this.tick(), 1000);
-        console.log("id is: " + this.routeParams.get('id'));
         let taskIndex = parseInt(this.routeParams.get('id'));
-        //this.taskName = this.taskService.taskStore[0].name;
         if (!isNaN(taskIndex)) {
             this.taskName = this.taskService.taskStore[taskIndex].name;
         }
+        this.fadeInAnimationBuilder.start(
+            this.elementRef.nativeElement.firstElementChild
+        );
     }
 
     routerCanReuse(): boolean {
