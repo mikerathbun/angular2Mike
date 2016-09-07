@@ -6,9 +6,10 @@ import { RouteParams, CanReuse, OnReuse } from '@angular/router-deprecated';
 
 @Component({
     selector: 'pomodoro-timer-widget',
+    styleUrls: ['app/timer/timer-widget.component.css'],
     template: `
     <div class="text-center">
-      <img src="/app/shared/assets/img/pomodoro.png" alt="Pomodoro">
+      <img src="/app/shared/assets/img/pomodoro.png" [ngClass]="{ pulse: !isPaused }">
       <h3><small>{{ taskName }}</small></h3>
       <h1> {{ minutes }}:{{ seconds  | number: '2.0' }} </h1>
       <p>
